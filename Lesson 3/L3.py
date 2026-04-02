@@ -14,6 +14,11 @@ hsvImage = cv2.cvtColor(img1, cv2.COLOR_BGR2HSV)
 bgr = cv2.cvtColor(hsvImage, cv2.COLOR_HSV2BGR)
 M = cv2.getRotationMatrix2D((col / 2, row / 2), 104, 0.5)
 res = cv2.warpAffine(img1, M, (col, row))
-cv2.imshow('rq', bgr)
+
+# Edge Detection
+egdes = cv2.Canny(img1, 0, 0)
+
+cv2.imshow('rq', egdes)
+#cv2.imwrite("Delete.jpg", bgr)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

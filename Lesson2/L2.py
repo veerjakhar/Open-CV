@@ -41,7 +41,7 @@ cv2.waitKey(0)
 
 #Bordering of an image
 #cv2.copyMakeBorder(img1, top, bottom, left, right, borderType, colorValue)
-borderimg = cv2.copyMakeBorder(img2, 10, 10, 10, 10, cv2.BORDER_REPLICATE, value = 1)
+borderimg = cv2.copyMakeBorder(img2, 10, 10, 10, 10, cv2.BORDER_CONSTANT, value = 1)
 cv2.imshow('idc', borderimg)
 
 #| Border Type        | Description                         |

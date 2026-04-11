@@ -21,15 +21,30 @@ print(avgwidth)
 print(avgheight)
 print(21//5)
 
-for file in os.listdir('.'):
-    if file.endswith('.jpg') or file.endswith('.jpeg') or file.endswith('.png'):
-        img = Image.open(os.path.join(path, file))
-        width, height = img.size
+images = [f for f in os.listdir('.') if f.endswith(('.jpg', '.jpeg', '.png'))]
 
-        print(width, height)
-        image = img.resize((avgwidth, avgheight), Image.ANTIALIAS)
-        #cv2.imshow('the', image)
-        image.save(file, 'JPEG', quality = 95)
-        print(img.filename.split('\\')[-1], " is resized")
-        #cv2.waitKey(0)
-#cv2.destroyAllWindows()
+for file in images:
+    img = Image.open(os.path.join(path, file))
+    width, height = img.size
+    print(width, height)
+    image = img.resize((avgwidth, avgheight), Image.LANCZOS)
+    #cv2.imshow('the', image)vid of audio when doign it
+    image.save(file, 'JPEG', quality = 95)
+    print(img.filename.split('\\')[-1], " is resized")
+    
+def video_gen():
+    global path, images
+    video_name = "running_boydelete.mp4"
+    os.chdir(path)
+    print(images)
+    frame = cv2.imread(os.path.join('.', images[0]))
+    height, width, layers = frame.shape
+    #video = cv2.VideoWriter(video_name, 0, 1, (width, height))
+    fourcc = cv2.VideoWriter_fourcc(*'avc1')
+    video = cv2.VideoWriter(video_name, fourcc, 2, (width, height))
+    ffmpeg -i running_boydelete.mp4 -vcodec libx264 output.mp4
+    cv2.destroyAllWindows()
+    video.release()
+
+
+video_gen()

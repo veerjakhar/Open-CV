@@ -37,8 +37,8 @@ while(raw_video.isOpened()):
     count = count+1 
     img = np.flip(img, axis = 1)
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-    lower_Shade = np.array([141,  46, 212])
-    upper_Shade = np.array([146,  74,  79])
+    lower_Shade = np.array([135,  40, 50])
+    upper_Shade = np.array([155,  255,  255])
     mask = cv2.inRange(hsv, lower_Shade, upper_Shade)
 
     kernel = np.ones((3, 3), np.uint8)
@@ -54,5 +54,5 @@ while(raw_video.isOpened()):
     if key == 27:
         break
 
-cap.release()
+raw_video.release()
 cv2.destroyAllWindows()

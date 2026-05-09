@@ -64,11 +64,14 @@ while True:
 
         # Prediction[0]= label
         #prediction[1] = confidence
-        if prediction[1] < 500:
+        if prediction[1] < 70:
             # show recognised name
             cv2.putText(im, '%s - %.0f' % (names[prediction[0]], prediction[1]), (x - 10, y - 10), cv2.FONT_HERSHEY_PLAIN, 2, (255, 0, 255), 3)
+            # Draw rectangle around face
+            cv2.rectangle(im, (x,y), (x + w, y + h), (40, 255, 0), 2)
         else:
             cv2.putText(im, 'Not Recognised', (x - 10, y - 10), cv2.FONT_HERSHEY_PLAIN, 2, (255, 0, 0))
+            cv2.rectangle(im, (x,y), (x + w, y + h), (255, 0, 0), 2)
 
     # Show Webcam Output
     cv2.imshow('frs', im)
